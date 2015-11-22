@@ -3,8 +3,6 @@ package interpoller
 import (
 	"fmt"
 	"net"
-
-	log "github.com/Sirupsen/logrus"
 )
 
 type IfaceError struct {
@@ -36,20 +34,4 @@ func AddressesOnInterface(iface *net.Interface) (*[]net.Addr, error) {
 		return nil, &IfaceError{ErrStr: err.Error(), Name: "addressesOnInterface()"}
 	}
 	return &addrs, nil
-}
-
-func localInterfaces() {
-	ifaces, err := net.Interfaces()
-	if err != nil {
-		fmt.Print(fmt.Errorf("localAddresses: %+v\n", err.Error()))
-		return
-	}
-	for _, i := range ifaces {
-		_, err := i.Addrs()
-		if err != nil {
-			fmt.Print(fmt.Errorf("localAddresses: %+v\n", err.Error()))
-			continue
-		}
-		log.Infof("IFace: %#v %#v", i.Name, i.Flags)
-	}
 }
