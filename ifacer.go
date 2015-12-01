@@ -19,6 +19,11 @@ func (ife IfaceError) Error() string {
 	}
 }
 
+type NetworkInfo interface {
+	Interfaces() ([]net.Interface, error)
+	InterfaceAddrs() ([]net.Addr, error)
+}
+
 func HostInterfaces() (*[]net.Interface, error) {
 	ifaces, err := net.Interfaces()
 	if err != nil {
