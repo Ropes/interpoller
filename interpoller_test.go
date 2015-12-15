@@ -43,3 +43,15 @@ func TestInterfaceAddresses(t *testing.T) {
 		t.Errorf("Differeing ActiveInterfaces tested as equeivalent:\n%#v\n%#v\n", ai1, ai3)
 	}
 }
+
+func TestIntegrationInterfaceAddresses(t *testing.T) {
+	addrs1, _ := GetAddrs()
+	addrs2, _ := GetAddrs()
+
+	ai1 := NewActiveInterfaces(addrs1)
+	ai2 := NewActiveInterfaces(addrs2)
+
+	if reflect.DeepEqual(ai1, ai2) != true {
+		t.Errorf("ActiveInterfaces were not tested as equivalent by DeepEqual")
+	}
+}

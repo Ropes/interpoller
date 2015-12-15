@@ -1,14 +1,10 @@
 package interpoller
 
-import (
-	"net"
-
-	log "github.com/Sirupsen/logrus"
-)
+import "net"
 
 func GetAddrs() (*[]net.Addr, error) {
 	ifaces, err := HostInterfaces()
-	var addrs *[]net.Addr
+	allAddrs := make([]net.Addr, 0, 0)
 	if err != nil {
 		return nil, err
 	}
@@ -18,10 +14,10 @@ func GetAddrs() (*[]net.Addr, error) {
 			return nil, err
 		}
 		for _, a := range *addrs {
-			log.WithFields(log.Fields{"IFace": i.Name, "NetworkType": a.Network(), "Address": a.String()}).Infof("Interface Address")
+			allAddrs = append(allAddrs, a)
 		}
 	}
-	return addrs, nil
+	return &allAddrs, nil
 }
 
 type ActiveInterfaces struct {
