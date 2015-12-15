@@ -25,7 +25,7 @@ func HostInterfaces() (*[]net.Interface, error) {
 	ifaces, err := net.Interfaces()
 	if err != nil {
 		fmt.Print(fmt.Errorf("localAddresses: %+v\n", err.Error()))
-		return nil, &IfaceError{ErrStr: err.Error(), Name: "hostInterfaces()"}
+		return nil, err
 	}
 	return &ifaces, nil
 }
@@ -33,7 +33,7 @@ func HostInterfaces() (*[]net.Interface, error) {
 func AddressesOnInterface(iface *net.Interface) (*[]net.Addr, error) {
 	addrs, err := iface.Addrs()
 	if err != nil {
-		return nil, &IfaceError{ErrStr: err.Error(), Name: "addressesOnInterface()"}
+		return nil, err
 	}
 	return &addrs, nil
 }
