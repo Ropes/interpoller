@@ -54,4 +54,7 @@ func TestIntegrationInterfaceAddresses(t *testing.T) {
 	if reflect.DeepEqual(ai1, ai2) != true {
 		t.Errorf("ActiveInterfaces were not tested as equivalent by DeepEqual")
 	}
+	for _, a := range *addrs1 {
+		t.Logf("%#v", a.String())
+	}
 }
