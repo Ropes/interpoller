@@ -1,9 +1,6 @@
 package interpoller
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
 func TestHostIfaces(t *testing.T) {
 	//Hopefullying the tests are running on a VM/host with network interfaces
@@ -15,5 +12,5 @@ func TestHostIfaces(t *testing.T) {
 	if len(*ifaces) < 1 {
 		t.Errorf("No iterfaces returned!")
 	}
-	fmt.Printf("%#v\n", ifaces)
+	t.Logf("%#v\n", ifaces)
 }
