@@ -33,7 +33,7 @@ func HostInterfaces() (*[]net.Interface, error) {
 func AddressesOnInterface(iface *net.Interface) (*[]net.Addr, error) {
 	addrs, err := iface.Addrs()
 	if err != nil {
-		return nil, &IfaceError{ErrStr: err.Error(), Name: "addressesOnInterface()"}
+		return nil, err
 	}
 	return &addrs, nil
 }
